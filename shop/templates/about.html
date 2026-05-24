@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+    <style>
+        :root {
+            --bg: #f3f7fb;
+            --text: #193244;
+            --accent: #1f6f8b;
+            --accent-soft: #dff0f7;
+            --panel: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Trebuchet MS", Verdana, sans-serif;
+            background:
+                linear-gradient(180deg, #d6ecf5 0 28%, var(--bg) 28% 100%);
+            color: var(--text);
+            padding: 40px 18px;
+        }
+
+        .about-shell {
+            width: min(900px, 100%);
+            margin: 0 auto;
+            display: grid;
+            gap: 22px;
+        }
+
+        .headline,
+        .story {
+            background: var(--panel);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 14px 34px rgba(18, 65, 87, 0.12);
+        }
+
+        .headline {
+            border-left: 10px solid var(--accent);
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        h1 {
+            margin: 0 0 14px;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .story-card {
+            background: var(--accent-soft);
+            border-radius: 18px;
+            padding: 18px;
+        }
+
+        .story-card h2 {
+            margin-top: 0;
+            font-size: 1rem;
+        }
+
+        .story-card p,
+        .story p {
+            line-height: 1.75;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 720px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="about-shell">
+        <section class="headline">
+            <p class="eyebrow">About</p>
+            <h1>The story behind the store.</h1>
+            <p>This page uses a cleaner editorial layout so it feels different from the landing-style homepage.</p>
+        </section>
+        <section class="story">
+            <p>This section is a good place to describe your business, what products you sell, and what makes your shop useful to customers.</p>
+            <div class="story-grid">
+                <article class="story-card">
+                    <h2>Mission</h2>
+                    <p>Explain the goal of your store in one short and clear paragraph.</p>
+                </article>
+                <article class="story-card">
+                    <h2>Vision</h2>
+                    <p>Describe what kind of customer experience you want to build over time.</p>
+                </article>
+                <article class="story-card">
+                    <h2>Values</h2>
+                    <p>List ideas like trust, quality, speed, or affordability.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
