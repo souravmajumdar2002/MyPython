@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% block title %}Add Product | Ecommerce{% endblock %}
+
+{% block extra_css %}
+<style>
+	.product-form-page {
+		display: grid;
+		gap: 24px;
+	}
+
+	.product-form-header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 16px;
+		flex-wrap: wrap;
+	}
+
+	.product-form-title {
+		margin: 0;
+		font-size: clamp(1.9rem, 4vw, 2.7rem);
+	}
+
+	.product-form-subtitle {
+		margin: 8px 0 0;
+		color: #5b6472;
+		line-height: 1.7;
+		max-width: 640px;
+	}
+
+	.back-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 12px 18px;
+		border-radius: 999px;
+		border: 1px solid rgba(127, 67, 24, 0.16);
+		background: rgba(255, 255, 255, 0.7);
+		color: #7f4318;
+		font-weight: 700;
+	}
+
+	.product-form-card {
+		background: rgba(255, 255, 255, 0.68);
+		border: 1px solid rgba(127, 67, 24, 0.14);
+		border-radius: 24px;
+		padding: 28px;
+	}
+
+	.product-form {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 20px;
+	}
+
+	.field-group {
+		display: grid;
+		gap: 10px;
+	}
+
+	.field-group.full-width {
+		grid-column: 1 / -1;
+	}
+
+	.field-group label {
+		font-weight: 700;
+		color: #7f4318;
+	}
+
+	.field-group input,
+	.field-group textarea,
+	.field-group select {
+		width: 100%;
+		padding: 14px 16px;
+		border-radius: 16px;
+		border: 1px solid rgba(127, 67, 24, 0.16);
+		background: #fffdf9;
+		font: inherit;
+		color: #1f2937;
+		outline: none;
+		transition: border-color 0.15s ease, box-shadow 0.15s ease;
+	}
+
+	.field-group input:focus,
+	.field-group textarea:focus,
+	.field-group select:focus {
+		border-color: #c26d2d;
+		box-shadow: 0 0 0 4px rgba(194, 109, 45, 0.12);
+	}
+
+	.field-group textarea {
+		min-height: 140px;
+		resize: vertical;
+	}
+
+	.form-actions {
+		grid-column: 1 / -1;
+		display: flex;
+		justify-content: flex-end;
+		gap: 12px;
+		flex-wrap: wrap;
+		padding-top: 6px;
+	}
+
+	.secondary-button,
+	.primary-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 13px 22px;
+		border-radius: 999px;
+		font-weight: 700;
+	}
+
+	.secondary-button {
+		border: 1px solid rgba(127, 67, 24, 0.16);
+		background: rgba(255, 255, 255, 0.7);
+		color: #7f4318;
+	}
+
+	.primary-button {
+		border: none;
+		background: linear-gradient(135deg, #7f4318, #c26d2d);
+		color: #fffaf5;
+		box-shadow: 0 14px 28px rgba(127, 67, 24, 0.18);
+		cursor: pointer;
+	}
+
+	@media (max-width: 760px) {
+		.product-form {
+			grid-template-columns: 1fr;
+		}
+
+		.product-form-card {
+			padding: 20px;
+		}
+
+		.form-actions {
+			justify-content: stretch;
+		}
+
+		.secondary-button,
+		.primary-button,
+		.back-link {
+			width: 100%;
+		}
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="product-form-page">
+	<div class="product-form-header">
+		<div>
+			<h1 class="product-form-title">Add Product</h1>
+			<p class="product-form-subtitle">
+				Create a new catalog item with pricing, tax, and descriptive details.
+			</p>
+		</div>
+		<a class="back-link" href="{% url 'products' %}">Back to Products</a>
+	</div>
+
+	<div class="product-form-card">
+		<form class="product-form" method="post">
+			{% csrf_token %}
+
+			<div class="field-group">
+				<label for="product_name">Product Name</label>
+				<input
+					type="text"
+					id="product_name"
+					name="product_name"
+					placeholder="Enter product name"
+				/>
+			</div>
+
+			<div class="field-group">
+				<label for="product_code">Product Code</label>
+				<input
+					type="text"
+					id="product_code"
+					name="product_code"
+					placeholder="Enter product code"
+				/>
+			</div>
+
+			<div class="field-group full-width">
+				<label for="description">Description</label>
+				<textarea
+					id="description"
+					name="description"
+					placeholder="Write a short product description"
+				></textarea>
+			</div>
+
+			<div class="field-group">
+				<label for="price">Price</label>
+				<input type="number" id="price" name="price" step="0.01" placeholder="0.00" />
+			</div>
+
+			<div class="field-group">
+				<label for="tax">Tax %</label>
+				<input type="number" id="tax" name="tax" step="0.01" placeholder="0.00" />
+			</div>
+
+			<div class="field-group">
+				<label for="mrp">MRP</label>
+				<input type="number" id="mrp" name="mrp" step="0.01" placeholder="0.00" />
+			</div>
+
+			<div class="field-group">
+				<label for="stock">Stock Quantity</label>
+				<input type="number" id="stock" name="stock" placeholder="0" />
+			</div>
+
+			<div class="field-group full-width">
+				<label for="status">Status</label>
+				<select id="status" name="status">
+					<option value="">Select status</option>
+					<option value="active">Active</option>
+					<option value="draft">Draft</option>
+					<option value="out_of_stock">Out of Stock</option>
+				</select>
+			</div>
+
+			<div class="form-actions">
+				<a class="secondary-button" href="{% url 'products' %}">Cancel</a>
+				<button class="primary-button" type="submit">Save Product</button>
+			</div>
+		</form>
+	</div>
+</section>
+{% endblock %}

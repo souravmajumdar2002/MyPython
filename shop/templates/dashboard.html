@@ -1,0 +1,68 @@
+{% extends 'base.html' %} 
+{% block title %}Dashboard | Ecommerce{% endblock %}
+{% block content %}
+<section style="display: grid; gap: 22px">
+	<div>
+		<p
+			style="
+				margin: 0 0 10px;
+				text-transform: uppercase;
+				letter-spacing: 0.16em;
+				color: #c26d2d;
+				font-size: 0.78rem;
+				font-weight: 700;
+			"
+		>
+			Dashboard
+		</p>
+		<h1 style="margin: 0 0 14px; font-size: clamp(2rem, 5vw, 3.5rem)">
+			Your account overview.
+		</h1>
+		<p style="margin: 0; line-height: 1.8; color: #5b6472">
+			This is the protected area shown after login.
+		</p>
+	</div>
+
+	<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px">
+		<div
+			style="
+				background: #fff9f3;
+				border: 1px solid rgba(194, 109, 45, 0.18);
+				border-radius: 18px;
+				padding: 18px;
+			"
+		>
+			<h2 style="margin-top: 0">Orders</h2>
+			<p style="margin-bottom: 0; line-height: 1.75">
+				Track recent purchases and fulfillment status here.
+			</p>
+		</div>
+		<div
+			style="
+				background: #fff9f3;
+				border: 1px solid rgba(194, 109, 45, 0.18);
+				border-radius: 18px;
+				padding: 18px;
+			"
+		>
+			<h2 style="margin-top: 0">Profile</h2>
+			<p style="margin-bottom: 0; line-height: 1.75">
+				Keep customer details and preferences up to date.
+			</p>
+		</div>
+		<div
+			style="
+				background: #fff9f3;
+				border: 1px solid rgba(194, 109, 45, 0.18);
+				border-radius: 18px;
+				padding: 18px;
+			"
+		>
+			<h2 style="margin-top: 0">Support</h2>
+			<p style="margin-bottom: 0; line-height: 1.75">
+				Link support channels or help articles from here.
+			</p>
+		</div>
+	</div>
+</section>
+{% endblock %}

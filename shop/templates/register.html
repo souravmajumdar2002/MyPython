@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Register | Ecommerce{% endblock %}
+
+{% block content %}
+<section style="max-width:560px; margin:0 auto;">
+    <h1 style="margin-top:0;">Create an account</h1>
+    <p style="color:#5b6472; line-height:1.8;">Register to access your dashboard and continue through the storefront.</p>
+
+    <form method="post" style="display:grid; gap:16px; margin-top:24px;">
+        {% csrf_token %}
+        <label style="display:grid; gap:8px;">
+            <span>Username</span>
+            <input type="text" name="username" required style="padding:14px 16px; border-radius:12px; border:1px solid rgba(127,67,24,0.18); font:inherit;">
+        </label>
+        <label style="display:grid; gap:8px;">
+            <span>Email</span>
+            <input type="email" name="email" required style="padding:14px 16px; border-radius:12px; border:1px solid rgba(127,67,24,0.18); font:inherit;">
+        </label>
+        <label style="display:grid; gap:8px;">
+            <span>Password</span>
+            <input type="password" name="password" required style="padding:14px 16px; border-radius:12px; border:1px solid rgba(127,67,24,0.18); font:inherit;">
+        </label>
+        <button type="submit" style="padding:14px 18px; border:0; border-radius:12px; background:linear-gradient(135deg, #7f4318, #c26d2d); color:#fff7ed; font:inherit; font-weight:700; cursor:pointer;">Register</button>
+    </form>
+</section>
+{% endblock %}
