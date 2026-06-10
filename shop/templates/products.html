@@ -78,6 +78,22 @@
 		border-bottom: none;
 	}
 
+	.type-badge {
+		display: inline-flex;
+		align-items: center;
+		padding: 6px 10px;
+		border-radius: 999px;
+		background: #fff1e6;
+		color: #9a4d19;
+		font-size: 0.82rem;
+		font-weight: 700;
+	}
+
+	.video-link {
+		color: #9a4d19;
+		font-weight: 700;
+	}
+
 	@media (max-width: 760px) {
 		.products-header {
 			align-items: flex-start;
@@ -108,18 +124,46 @@
 				<tr>
 					<th>Id</th>
 					<th>Item Name</th>
+					<th>Type</th>
 					<th>Description</th>
 					<th>Price</th>
 					<th>Tax %</th>
 					<th>MRP</th>
+					<th>Stock</th>
+					<th>Status</th>
+					<th>Video</th>
 				</tr>
 			</thead>
 			<tbody>
+				{% for product in products %}
 				<tr>
-					<td colspan="6" style="text-align: center; color: #5b6472">
+					<td>{{ product.id }}</td>
+					<td>
+						<strong>{{ product.product_name }}</strong><br />
+						<small>{{ product.product_code }}</small>
+					</td>
+					<td><span class="type-badge">{{ product.get_product_type_display }}</span></td>
+					<td>{{ product.description|default:"-" }}</td>
+					<td>{{ product.price }}</td>
+					<td>{{ product.tax }}</td>
+					<td>{{ product.mrp }}</td>
+					<td>{{ product.stock }}</td>
+					<td>{{ product.get_status_display }}</td>
+					<td>
+						{% if product.video_url %}
+						<a class="video-link" href="{{ product.video_url }}" target="_blank" rel="noopener noreferrer">Open</a>
+						{% else %}
+						-
+						{% endif %}
+					</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td colspan="10" style="text-align: center; color: #5b6472">
 						No products available yet.
 					</td>
 				</tr>
+				{% endfor %}
 			</tbody>
 		</table>
 	</div>

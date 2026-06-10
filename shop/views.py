@@ -4,6 +4,9 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+from .forms import ProductForm
+from .models import Product
+
 def home(request):
     return render(request, 'home.html')
 
@@ -60,8 +63,21 @@ def logout_user(request):
     auth_logout(request)
     return redirect('login')
 
+@login_required(login_url='login')
 def products(request):
-    return render(request, 'products.html')
+    product_list = Product.objects.all()
+    return render(request, 'products.html', {'products': product_list})
 
+@login_required(login_url='login')
 def add_products(request):
-    return render(request, 'add_product.html')
+    if request.method == "POST":
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Product saved successfully.")
+            return redirect('products')
+        messages.error(request, "Please correct the errors below.")
+    else:
+        form = ProductForm()
+
+    return render(request, 'add_product.html', {'form': form})
